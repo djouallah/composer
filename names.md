@@ -1,7 +1,7 @@
 
-## Iconic Names
+## Simple Query
 
-For each state, which names are the most Iconic (unusally popular)?
+test of a Query
  
  <!-- malloy-query  
   name="Iconic Names by State"
