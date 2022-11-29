@@ -1,0 +1,11 @@
+{
+  "readme": "names.md",
+  "title": "Baby Names",
+  "models": [
+    {
+      "id": "names2",
+      "path": "model.malloy",
+      "tables": ["part.parquet","lineitem.parquet","nation.parquet","partsupp.parquet","supplier.parquet","orders.parquet","customer.parquet","region"]
+    }
+  ]
+}

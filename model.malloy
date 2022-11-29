@@ -1,0 +1,34 @@
+--! styles model.styles.json
+source:lineitem is table('duckdb:lineitem.parquet')
+{ 
+  join_one: orders is table('duckdb:orders.parquet')
+                    on orders.o_orderkey = l_orderkey
+  join_one: customer is table('duckdb:customer.parquet')
+                     on customer.c_custkey = orders.o_custkey
+  join_one: customer_nation is table('duckdb:nation.parquet')
+                    on customer_nation.n_nationkey = customer.c_nationkey
+  join_one: customer_region is table('duckdb:region.parquet')
+                    on  customer_region.r_regionkey =customer_nation.n_regionkey
+  join_one: partsupp is table('duckdb:partsupp.parquet')
+                    on partsupp.ps_partkey = l_partkey and partsupp.ps_suppkey = l_suppkey
+  join_one: supplier is table('duckdb:supplier.parquet')
+                    on supplier.s_suppkey = partsupp.ps_suppkey 
+  join_one: part is table('duckdb:part.parquet')
+                    on part.p_partkey = partsupp.ps_partkey
+  join_one: supplier_nation is table('duckdb:nation.parquet')
+                    on supplier_nation.n_nationkey = supplier.s_nationkey
+  join_one: supplier_region is table('duckdb:region.parquet')
+                    on  supplier_region.r_regionkey =supplier_nation.n_regionkey
+  dimension : Shipdate_year is l_shipdate.year
+  measure :   _count is count()
+              _count_all is all(_count)
+              _Ratio is _count/_count_all
+              sum_qty is SUM(l_quantity) 
+              sum_base_price is SUM(l_extendedprice)
+              sum_disc_price is SUM(l_extendedprice * (1 - l_discount)) 
+              sum_charge is SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) 
+              avg_qty is AVG(l_quantity) 
+              avg_price is AVG(l_extendedprice) 
+              avg_disc is AVG(l_discount) 
+              count_customers is count( distinct customer.c_custkey)
+}

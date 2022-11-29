@@ -1,0 +1,67 @@
+import "model.malloy"
+
+// --
+// Name: count customers who bought something
+Query: lineitem -> {  
+    aggregate: count_customers
+                 }
+
+// --
+// Name: count all
+Query: lineitem -> {  
+    group_by: l_returnflag
+    aggregate: _count, ignore_filter_context is all(_count)
+                 }
+                 
+
+// --
+// Name: Top_customers_Qty
+Query:  lineitem -> {  
+     top :5
+     group_by : customer.c_name
+     aggregate: sum_qty
+    
+                 }
+ 
+// --
+// Name: sum_Quantity_by_Customer_region
+Query:  lineitem -> {  
+     group_by : customer_region.r_name
+     aggregate: sum_qty
+                 }
+                 
+// --
+// Name: TPCH1
+Query:  lineitem -> {
+    
+    group_by : l_returnflag,
+               l_linestatus
+    aggregate: _count_all,sum_qty,sum_base_price,sum_disc_price,sum_charge,
+               avg_qty,avg_price,avg_disc,_count
+                 }
+                 
+// --                
+// Name: by_flag
+Query :   lineitem -> {
+    group_by : l_returnflag
+    aggregate :_count_all,_count,_Ratio
+                   }
+                   
+// --                  
+// Name: by_year
+Query :  xx is lineitem -> {
+    group_by:customer_region.r_name
+       nest : by_year_bar_chart is {
+          group_by : customer_nation.n_name
+          aggregate :sum_qty
+          aggregate :Sold_BY_Year is sum_qty/all(sum_qty)
+                   }
+}
+
+// --
+// Name: by_Country_supplier
+Query :  lineitem -> {
+    group_by : Supplier_Country is supplier_nation.n_name
+    aggregate :sum_qty
+    limit : 30
+                              }
