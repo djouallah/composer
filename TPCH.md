@@ -8,5 +8,5 @@ test of a Query
   model="model.malloy"
 -->
 ```malloy
-query: lineitem -> xxx
+query: lineitem -> TPCH1
 ```
