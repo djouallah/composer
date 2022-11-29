@@ -4,9 +4,9 @@
 test of a Query
  
  <!-- malloy-query  
-  name="Iconic Names by State"
+  name="Test a Query"
   model="model.malloy"
 -->
 ```malloy
-query: TPCH -> xxx
+query: lineitem -> xxx
 ```
