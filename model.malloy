@@ -1,4 +1,3 @@
---! styles model.styles.json
 source:lineitem is table('duckdb:lineitem.parquet')
 { 
   join_one: orders is table('duckdb:orders.parquet')
