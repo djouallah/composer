@@ -4,7 +4,7 @@
   "models": [
     {
       "id": "TPCH",
-      "path": "./model.malloy",
+      "path": "model.malloy",
       "tables": ["part.parquet","lineitem.parquet","nation.parquet","partsupp.parquet","supplier.parquet","orders.parquet","customer.parquet","region.parquet"]
     }
   ]
