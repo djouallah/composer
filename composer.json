@@ -1,10 +1,10 @@
 {
   "readme": "names.md",
-  "title": "Baby Names",
+  "title": "TPCH Test",
   "models": [
     {
-      "id": "names2",
-      "path": "model.malloy",
+      "id": "TPCH",
+      "path": "./model.malloy",
       "tables": ["part.parquet","lineitem.parquet","nation.parquet","partsupp.parquet","supplier.parquet","orders.parquet","customer.parquet","region"]
     }
   ]
