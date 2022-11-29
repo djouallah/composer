@@ -2,4 +2,4 @@
 
 Play with the Fiddle here:
 
-  https://github.com/djouallah/composer
+  https://djouallah.github.io/composer/
