@@ -30,4 +30,8 @@ source:lineitem is table('duckdb:lineitem.parquet')
               avg_price is AVG(l_extendedprice) 
               avg_disc is AVG(l_discount) 
               count_customers is count( distinct customer.c_custkey)
+Query: xxx is {  
+    group_by: l_returnflag
+    aggregate: _count, ignore_filter_context is all(_count)
+                 }
 }
