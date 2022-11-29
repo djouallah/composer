@@ -1,7 +1,5 @@
-# Malloy Composer - USA Names
-This data comes form the Social Security Administration Names data.  The
-data contains the number of births for each state, year and gender.
+# Malloy Composer - TPCH
 
 Play with the Fiddle here:
 
-  https://lloydtabb.github.io/babynames
+  https://github.com/djouallah/composer
