@@ -1,22 +1,22 @@
-source:lineitem is table('duckdb:lineitem.parquet')
+source:lineitem is table('duckdb:data/lineitem.parquet')
 { 
-  join_one: orders is table('duckdb:orders.parquet')
+  join_one: orders is table('duckdb:data/orders.parquet')
                     on orders.o_orderkey = l_orderkey
-  join_one: customer is table('duckdb:customer.parquet')
+  join_one: customer is table('duckdb:data/customer.parquet')
                      on customer.c_custkey = orders.o_custkey
-  join_one: customer_nation is table('duckdb:nation.parquet')
+  join_one: customer_nation is table('duckdb:data/nation.parquet')
                     on customer_nation.n_nationkey = customer.c_nationkey
-  join_one: customer_region is table('duckdb:region.parquet')
+  join_one: customer_region is table('duckdb:data/region.parquet')
                     on  customer_region.r_regionkey =customer_nation.n_regionkey
-  join_one: partsupp is table('duckdb:partsupp.parquet')
+  join_one: partsupp is table('duckdb:data/partsupp.parquet')
                     on partsupp.ps_partkey = l_partkey and partsupp.ps_suppkey = l_suppkey
-  join_one: supplier is table('duckdb:supplier.parquet')
+  join_one: supplier is table('duckdb:data/supplier.parquet')
                     on supplier.s_suppkey = partsupp.ps_suppkey 
-  join_one: part is table('duckdb:part.parquet')
+  join_one: part is table('duckdb:data/part.parquet')
                     on part.p_partkey = partsupp.ps_partkey
-  join_one: supplier_nation is table('duckdb:nation.parquet')
+  join_one: supplier_nation is table('duckdb:data/nation.parquet')
                     on supplier_nation.n_nationkey = supplier.s_nationkey
-  join_one: supplier_region is table('duckdb:region.parquet')
+  join_one: supplier_region is table('duckdb:data/region.parquet')
                     on  supplier_region.r_regionkey =supplier_nation.n_regionkey
   dimension : Shipdate_year is l_shipdate.year
   measure :   _count is count()
@@ -31,9 +31,10 @@ source:lineitem is table('duckdb:lineitem.parquet')
               avg_disc is AVG(l_discount) 
               count_customers is count( distinct customer.c_custkey)
 Query:  TPCH1 is {
+   where : l_shipdate<= @1998-09-02
     group_by : l_returnflag,
                l_linestatus
-    aggregate: _count_all,sum_qty,sum_base_price,sum_disc_price,sum_charge,
+    aggregate: sum_qty,sum_base_price,sum_disc_price,sum_charge,
                avg_qty,avg_price,avg_disc,_count
                  }
 }

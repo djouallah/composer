@@ -4,7 +4,7 @@
 test of a Query
  
  <!-- malloy-query  
-  name="Test a Query"
+  name="TPCH Q1"
   model="model.malloy"
 -->
 ```malloy
