@@ -1,5 +1,5 @@
 {
-  "readme": "TPCH.md",
+  "readme": "query.md",
   "title": "TPCH Test",
   "models": [
     {
