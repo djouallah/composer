@@ -37,7 +37,7 @@ Query:  TPCH1 is {
     aggregate: sum_qty,sum_base_price,sum_disc_price,sum_charge,
                avg_qty,avg_price,avg_disc,_count
                  }
-regio  is  {
+region  is  {
     group_by:Continent is customer_region.r_name  
        nest : by_year_bar_chart is {
           group_by : Country is customer_nation.n_name
