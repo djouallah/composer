@@ -15,7 +15,7 @@ query: lineitem -> TPCH1
 Composer is implemented using Malloy, DuckDB and WASM and runs completely
 in your browser.
 
- https://www.malloydata.dev/docs
+  https://www.malloydata.dev/docs
   
  This Model Source code
  

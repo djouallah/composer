@@ -26,6 +26,7 @@ source:lineitem is table('duckdb:data/lineitem.parquet')
               sum_base_price is SUM(l_extendedprice)
               sum_disc_price is SUM(l_extendedprice * (1 - l_discount)) 
               sum_charge is SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) 
+              sum_value is SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)*l_quantity) 
               avg_qty is AVG(l_quantity) 
               avg_price is AVG(l_extendedprice) 
               avg_disc is AVG(l_discount) 
@@ -45,4 +46,13 @@ region  is  {
           aggregate :Sold_BY_Year is sum_qty/all(sum_qty)
                    }
            }
+query: complex is {
+    group_by: Supplier_contry is supplier_nation.n_name
+    aggregate: sum_qty
+    nest: 
+      region
+      TPCH1
+    limit: 10
+    order_by: sum_qty desc
+  }
 }
